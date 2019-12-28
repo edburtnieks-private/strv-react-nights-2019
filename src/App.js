@@ -23,7 +23,7 @@ const getToken = async () => {
 
     return token;
   } catch (error) {
-    console.log(error)
+    console.log(error);
   }
 };
 
