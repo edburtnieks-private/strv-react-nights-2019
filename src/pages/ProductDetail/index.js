@@ -1,5 +1,4 @@
 import React from 'react';
-import { Link } from 'react-router-dom';
 import PropTypes from 'prop-types';
 import { Product } from './components/Product';
 import { getProduct } from '../../api/products/get-product';
@@ -19,7 +18,6 @@ const ProductDetail = ({ match }) => {
 
   return (
     <>
-      <Link to="/">Back</Link>
       {isLoading && 'Loading . . .'}
       {data && <Product product={data} />}
     </>

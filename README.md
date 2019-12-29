@@ -52,6 +52,8 @@ This project was bootstrapped with [Create React App](https://github.com/faceboo
 
 - [React](https://reactjs.org/) - v16.12.0
 - [React Router](https://reacttraining.com/react-router/) - v5.1.2
+- [Redux](https://redux.js.org/) - Global state management (v4.0.5)
+- [React Redux](https://react-redux.js.org/) - React bindings for Redux (v7.1.3)
 
 ## Development tools used
 
