@@ -1,32 +1,17 @@
-import React, { Component } from 'react';
+import React from 'react';
 import { ProductList as ProductListComponent } from './components/ProductList';
 import { getProducts } from '../../api/products/get-products';
+import { useApi } from '../../api/use-api';
 
-class ProductList extends Component {
-  state = {
-    isLoading: true,
-    products: [],
-  };
+const ProductList = () => {
+  const { data, isLoading } = useApi(() => getProducts(), []);
 
-  componentDidMount() {
-    this.fetchProducts();
-  }
-
-  fetchProducts = async () => {
-    const products = await getProducts();
-    this.setState({ isLoading: false, products });
-  };
-
-  render() {
-    const { isLoading, products } = this.state;
-
-    return (
-      <>
-        {isLoading && 'Loading . . .'}
-        {!isLoading && <ProductListComponent products={products} />}
-      </>
-    );
-  }
-}
+  return (
+    <>
+      {isLoading && 'Loading . . .'}
+      {data && <ProductListComponent products={data} />}
+    </>
+  );
+};
 
 export { ProductList };
