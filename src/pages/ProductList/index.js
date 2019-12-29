@@ -1,6 +1,6 @@
 import React, { Component } from 'react';
 import { ProductList as ProductListComponent } from './components/ProductList';
-import { getProducts } from '../../api/products';
+import { fetchProducts } from '../../api/products';
 
 class ProductList extends Component {
   state = {
@@ -8,10 +8,14 @@ class ProductList extends Component {
     products: [],
   };
 
-  async componentDidMount() {
-    const products = await getProducts();
-    this.setState({ isLoading: false, products });
+  componentDidMount() {
+    this.getProducts();
   }
+
+  getProducts = async () => {
+    const products = await fetchProducts();
+    this.setState({ isLoading: false, products });
+  };
 
   render() {
     const { isLoading, products } = this.state;
