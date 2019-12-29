@@ -2,7 +2,7 @@ import React, { Component } from 'react';
 import { Link } from 'react-router-dom';
 import PropTypes from 'prop-types';
 import { Product } from './components/Product';
-import { fetchProduct } from '../../api/products';
+import { getProduct } from '../../api/products/get-product';
 
 const propTypes = {
   match: PropTypes.shape({
@@ -21,7 +21,7 @@ class ProductDetail extends Component {
   componentDidMount() {
     // eslint-disable-next-line react/destructuring-assignment
     const { id } = this.props.match.params;
-    this.getProduct(id);
+    this.fetchProduct(id);
   }
 
   componentDidUpdate(prevProps) {
@@ -29,12 +29,12 @@ class ProductDetail extends Component {
     const { id } = this.props.match.params;
 
     if (prevProps.match.params.id !== id) {
-      this.getProduct(id);
+      this.fetchProduct(id);
     }
   }
 
-  getProduct = async (id) => {
-    const product = await fetchProduct(id);
+  fetchProduct = async (id) => {
+    const product = await getProduct(id);
     this.setState({ isLoading: false, product });
   };
 

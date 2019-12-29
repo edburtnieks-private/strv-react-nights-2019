@@ -1,6 +1,6 @@
 import React, { Component } from 'react';
 import { ProductList as ProductListComponent } from './components/ProductList';
-import { fetchProducts } from '../../api/products';
+import { getProducts } from '../../api/products/get-products';
 
 class ProductList extends Component {
   state = {
@@ -9,11 +9,11 @@ class ProductList extends Component {
   };
 
   componentDidMount() {
-    this.getProducts();
+    this.fetchProducts();
   }
 
-  getProducts = async () => {
-    const products = await fetchProducts();
+  fetchProducts = async () => {
+    const products = await getProducts();
     this.setState({ isLoading: false, products });
   };
 

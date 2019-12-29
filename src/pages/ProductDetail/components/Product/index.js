@@ -12,7 +12,7 @@ const propTypes = {
 const Product = ({ product }) => (
   <>
     <h2>{product.name}</h2>
-    <img src={product.image_url} alt={product.description} />
+    <img src={product.image_url} alt={product.description} height="60" />
     <p>{product.description}</p>
   </>
 );
