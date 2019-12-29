@@ -1,9 +1,9 @@
 import config from '../config';
-import { getToken } from './token';
+import { fetchToken } from './token';
 
-export const getProducts = async () => {
+export const fetchProducts = async () => {
   try {
-    const { access_token } = await getToken();
+    const { access_token } = await fetchToken();
 
     const response = await fetch(
       `${config.commercelayerBaseEndpoint}/api/skus`,
@@ -15,14 +15,37 @@ export const getProducts = async () => {
       }
     );
 
-    const json = await response.json();
+    const { data } = await response.json();
 
-    const products = json.data.map((product) => ({
+    return data.map((product) => ({
       ...product.attributes,
       id: product.id,
     }));
+  } catch (error) {
+    console.log(error);
+  }
+};
 
-    return products;
+export const fetchProduct = async (id) => {
+  try {
+    const { access_token } = await fetchToken();
+
+    const response = await fetch(
+      `${config.commercelayerBaseEndpoint}/api/skus/${id}`,
+      {
+        headers: {
+          Accept: 'application/vnd.api+json',
+          Authorization: `Bearer ${access_token}`,
+        },
+      }
+    );
+
+    const { data } = await response.json();
+
+    return {
+      ...data.attributes,
+      id: data.id,
+    };
   } catch (error) {
     console.log(error);
   }
