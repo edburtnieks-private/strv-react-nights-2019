@@ -51,6 +51,7 @@ Example application with React
 This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app).
 
 - [React](https://reactjs.org/) - v16.12.0
+- [React Router](https://reacttraining.com/react-router/) - v5.1.2
 
 ## Development tools used
 

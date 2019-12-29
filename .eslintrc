@@ -30,6 +30,8 @@
     "consistent-return": 0,
     "camelcase": 0,
     "react/state-in-constructor": [2, "never"],
-    "react/no-render-return-value": 0
+    "react/no-render-return-value": 0,
+    "import/prefer-default-export": 0,
+    "import/no-extraneous-dependencies": 0
   }
 }
