@@ -1,22 +1,23 @@
-import React, { Component } from 'react';
-import { Switch, Route } from 'react-router-dom';
+import React from 'react';
+import { Switch, Route, Redirect } from 'react-router-dom';
 import { ProductList } from './pages/ProductList';
 import { ProductDetail } from './pages/ProductDetail';
+import { NotFound } from './pages/NotFound';
+import * as routes from './routes';
 
-// eslint-disable-next-line react/prefer-stateless-function
-class App extends Component {
-  render() {
-    return (
-      <>
-        <h1>React Nights 2019</h1>
-
-        <Switch>
-          <Route path="/products/:id" component={ProductDetail} />
-          <Route exact path="/" component={ProductList} />
-        </Switch>
-      </>
-    );
-  }
-}
+const App = () => (
+  <>
+    <Switch>
+      <Route
+        exact
+        path={routes.HOMEPAGE}
+        render={() => <Redirect to={routes.PRODUCT_LIST} />}
+      />
+      <Route exact path={routes.PRODUCT_LIST} component={ProductList} />
+      <Route path={routes.PRODUCT_DETAIL} component={ProductDetail} />
+      <Route component={NotFound} />
+    </Switch>
+  </>
+);
 
 export { App };

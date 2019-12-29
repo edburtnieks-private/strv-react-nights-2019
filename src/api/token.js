@@ -1,6 +1,6 @@
 import config from '../config';
 
-export const fetchToken = async () => {
+export const getToken = async () => {
   try {
     const response = await fetch(
       `${config.commercelayerBaseEndpoint}/oauth/token`,

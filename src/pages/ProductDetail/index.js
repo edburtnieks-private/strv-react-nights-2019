@@ -1,8 +1,9 @@
-import React, { Component } from 'react';
+import React from 'react';
 import { Link } from 'react-router-dom';
 import PropTypes from 'prop-types';
 import { Product } from './components/Product';
-import { fetchProduct } from '../../api/products';
+import { getProduct } from '../../api/products/get-product';
+import { useApi } from '../../api/use-api';
 
 const propTypes = {
   match: PropTypes.shape({
@@ -12,44 +13,18 @@ const propTypes = {
   }).isRequired,
 };
 
-class ProductDetail extends Component {
-  state = {
-    isLoading: true,
-    product: null,
-  };
+const ProductDetail = ({ match }) => {
+  const { id } = match.params;
+  const { data, isLoading } = useApi(() => getProduct(id), [id]);
 
-  componentDidMount() {
-    // eslint-disable-next-line react/destructuring-assignment
-    const { id } = this.props.match.params;
-    this.getProduct(id);
-  }
-
-  componentDidUpdate(prevProps) {
-    // eslint-disable-next-line react/destructuring-assignment
-    const { id } = this.props.match.params;
-
-    if (prevProps.match.params.id !== id) {
-      this.getProduct(id);
-    }
-  }
-
-  getProduct = async (id) => {
-    const product = await fetchProduct(id);
-    this.setState({ isLoading: false, product });
-  };
-
-  render() {
-    const { isLoading, product } = this.state;
-
-    return (
-      <>
-        <Link to="/">Back</Link>
-        {isLoading && 'Loading . . .'}
-        {!isLoading && <Product product={product} />}
-      </>
-    );
-  }
-}
+  return (
+    <>
+      <Link to="/">Back</Link>
+      {isLoading && 'Loading . . .'}
+      {data && <Product product={data} />}
+    </>
+  );
+};
 
 ProductDetail.propTypes = propTypes;
 
