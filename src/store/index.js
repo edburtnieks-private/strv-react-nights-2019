@@ -1,4 +1,5 @@
-import { createStore, combineReducers } from 'redux';
+import { createStore, combineReducers, applyMiddleware, compose } from 'redux';
+import thunk from 'redux-thunk';
 import products from './products';
 import cartItems from './cartItems';
 
@@ -9,9 +10,10 @@ const reducer = combineReducers({
   cartItems,
 });
 
+const composeEnhancers = window.__REDUX_DEVTOOLS_EXTENSION_COMPOSE__ || compose;
 const store = createStore(
   reducer,
-  window.__REDUX_DEVTOOLS_EXTENSION__ && window.__REDUX_DEVTOOLS_EXTENSION__() // eslint-disable-line no-underscore-dangle
+  /* preloadedState, */ composeEnhancers(applyMiddleware(thunk))
 );
 
 export default store;

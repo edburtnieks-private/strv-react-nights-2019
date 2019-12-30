@@ -8,7 +8,7 @@ const Cart = () => {
     (state) =>
       Object.keys(state.cartItems).map((productId) => ({
         quantity: state.cartItems[productId],
-        product: state.products.find((p) => p.id === productId),
+        product: state.products.products.find((p) => p.id === productId),
       })),
     shallowEqual
   );
