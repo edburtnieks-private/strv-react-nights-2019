@@ -6,6 +6,7 @@ import * as routes from './routes';
 import { ProductList } from './pages/ProductList';
 import { ProductDetail } from './pages/ProductDetail';
 import { Cart } from './pages/Cart';
+import { SignUp } from './pages/SignUp';
 import { NotFound } from './pages/NotFound';
 import { Header } from './components/Header';
 
@@ -22,6 +23,7 @@ const App = () => (
         <Route exact path={routes.PRODUCT_LIST} component={ProductList} />
         <Route path={routes.PRODUCT_DETAIL} component={ProductDetail} />
         <Route path={routes.CART} component={Cart} />
+        <Route path={routes.SIGN_UP} component={SignUp} />
         <Route component={NotFound} />
       </Switch>
     </Provider>

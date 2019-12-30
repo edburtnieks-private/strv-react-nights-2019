@@ -1,5 +1,7 @@
 import config from '../config';
 
+// TODO: Save token in local storage
+
 export const getToken = async () => {
   try {
     const response = await fetch(
