@@ -6,10 +6,7 @@ const propTypes = {
   onSubmit: PropTypes.func.isRequired,
   defaultValues: PropTypes.shape({}),
   validationSchema: PropTypes.shape({}),
-  children: PropTypes.oneOfType([
-    PropTypes.arrayOf(PropTypes.node),
-    PropTypes.node,
-  ]).isRequired,
+  children: PropTypes.node.isRequired,
 };
 
 const defaultProps = {

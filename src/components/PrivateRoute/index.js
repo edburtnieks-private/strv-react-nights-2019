@@ -6,7 +6,7 @@ import * as routes from '../../routes';
 const isAuthenticated = false;
 
 const propTypes = {
-  component: PropTypes.func.isRequired,
+  component: PropTypes.elementType.isRequired,
 };
 
 const PrivateRoute = ({ component: Component, ...rest }) => {
