@@ -13,7 +13,10 @@ const Header = () => (
           <Link to={routes.CART}>Cart</Link>
         </li>
         <li>
-          <Link to={routes.SIGN_UP}>Sign Up</Link>
+          <Link to={routes.SIGN_UP}>Sign up</Link>
+        </li>
+        <li>
+          <Link to={routes.ACCOUNT}>Account</Link>
         </li>
       </ul>
     </nav>

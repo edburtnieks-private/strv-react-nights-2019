@@ -1,13 +1,20 @@
 import config from '../config';
-import { getToken } from './token';
+import { getGuestToken } from './get-guest-token';
+import { getToken } from '../utils/token';
 
 export const api = async (url, options) => {
-  const { access_token } = await getToken();
+  let token = getToken();
+
+  if (!token) {
+    token = await getGuestToken();
+  }
+
   const response = await fetch(`${config.commercelayerBaseEndpoint}${url}`, {
     method: 'GET',
     headers: {
       Accept: 'application/vnd.api+json',
-      Authorization: `Bearer ${access_token}`,
+      Authorization: `Bearer ${token}`,
+      'Content-Type': 'application/vnd.api+json',
     },
     ...options,
   });

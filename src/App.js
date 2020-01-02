@@ -7,8 +7,10 @@ import { ProductList } from './pages/ProductList';
 import { ProductDetail } from './pages/ProductDetail';
 import { Cart } from './pages/Cart';
 import { SignUp } from './pages/SignUp';
+import { Account } from './pages/Account';
 import { NotFound } from './pages/NotFound';
 import { Header } from './components/Header';
+import { PrivateRoute } from './components/PrivateRoute';
 
 const App = () => (
   <>
@@ -21,9 +23,10 @@ const App = () => (
           render={() => <Redirect to={routes.PRODUCT_LIST} />}
         />
         <Route exact path={routes.PRODUCT_LIST} component={ProductList} />
-        <Route path={routes.PRODUCT_DETAIL} component={ProductDetail} />
-        <Route path={routes.CART} component={Cart} />
-        <Route path={routes.SIGN_UP} component={SignUp} />
+        <Route exact path={routes.PRODUCT_DETAIL} component={ProductDetail} />
+        <Route exact path={routes.CART} component={Cart} />
+        <Route exact path={routes.SIGN_UP} component={SignUp} />
+        <PrivateRoute exact path={routes.ACCOUNT} component={Account} />
         <Route component={NotFound} />
       </Switch>
     </Provider>

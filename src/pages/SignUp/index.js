@@ -1,9 +1,14 @@
-import React from 'react';
+import React, { useState } from 'react';
+import * as routes from '../../routes';
 import { Form } from '../../components/Shared/Form';
 import { Input } from '../../components/Shared/Input';
 import { schema } from './schema';
+import { createCustomer } from '../../api/customers/create-customer';
 
-const SignUp = () => {
+// eslint-disable-next-line react/prop-types
+const SignUp = ({ history, location }) => {
+  const [globalError, setGlobalError] = useState('');
+
   const defaultValues = {
     firstName: '',
     email: '',
@@ -11,13 +16,24 @@ const SignUp = () => {
     passwordConfirmation: '',
   };
 
-  const onSubmit = (data) => {
-    console.log(data);
+  const onSubmit = async (data) => {
+    try {
+      const { email, password, firstName } = data;
+      await createCustomer({ email, password, firstName });
+      /* eslint-disable react/prop-types */
+      const { from = routes.ACCOUNT } = location.state;
+      history.push(from);
+      /* eslint-enable react/prop-types */
+    } catch (error) {
+      setGlobalError(error);
+    }
   };
 
   return (
     <>
       <h1>Sign Up</h1>
+
+      {globalError && globalError}
 
       <Form
         onSubmit={onSubmit}
