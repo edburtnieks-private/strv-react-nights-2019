@@ -1,15 +1,24 @@
-import React from 'react';
+import React, { useEffect } from 'react';
+import { useSelector, useDispatch } from 'react-redux';
 import { ProductList as ProductListComponent } from './components/ProductList';
-import { getProducts } from '../../api/products/get-products';
-import { useApi } from '../../api/use-api';
+import { fetchProducts } from '../../store/products/actions';
 
 const ProductList = () => {
-  const { data, isLoading } = useApi(() => getProducts(), []);
+  const dispatch = useDispatch();
+  const { products } = useSelector((state) => state.products);
+  const { isFetching } = useSelector((state) => state.products);
+
+  useEffect(() => {
+    if (Array.isArray(products) && !products.length) {
+      dispatch(fetchProducts());
+    }
+    // eslint-disable-next-line
+  }, []);
 
   return (
     <>
-      {isLoading && 'Loading . . .'}
-      {data && <ProductListComponent products={data} />}
+      {isFetching && 'Loading . . .'}
+      {products && <ProductListComponent products={products} />}
     </>
   );
 };

@@ -1,6 +1,7 @@
 import config from '../config';
+import { setToken } from '../utils/token';
 
-export const getToken = async () => {
+export const getGuestToken = async () => {
   try {
     const response = await fetch(
       `${config.commercelayerBaseEndpoint}/oauth/token`,
@@ -18,7 +19,10 @@ export const getToken = async () => {
       }
     );
 
-    return await response.json();
+    const { access_token } = await response.json();
+    setToken(access_token);
+
+    return access_token;
   } catch (error) {
     console.log(error);
   }

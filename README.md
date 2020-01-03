@@ -52,6 +52,11 @@ This project was bootstrapped with [Create React App](https://github.com/faceboo
 
 - [React](https://reactjs.org/) - v16.12.0
 - [React Router](https://reacttraining.com/react-router/) - v5.1.2
+- [Redux](https://redux.js.org/) - Global state management (v4.0.5)
+- [Redux Thunk](https://github.com/reduxjs/redux-thunk#readme) - Thunk middleware for Redux (v2.3.0)
+- [React Redux](https://react-redux.js.org/) - React bindings for Redux (v7.1.3)
+- [React Hook Form](https://react-hook-form.com/) - Form library for React (v4.3.0)
+- [Yup](https://github.com/jquense/yup#readme) - JavaScript object schema validator (v0.28.0)
 
 ## Development tools used
 
