@@ -3,7 +3,6 @@ import { setToken } from '../utils/token';
 
 export const getGuestToken = async () => {
   try {
-    // TODO: Use api client
     const response = await fetch(
       `${config.commercelayerBaseEndpoint}/oauth/token`,
       {

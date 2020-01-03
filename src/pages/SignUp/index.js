@@ -21,11 +21,12 @@ const SignUp = ({ history, location }) => {
       const { email, password, firstName } = data;
       await createCustomer({ email, password, firstName });
       /* eslint-disable react/prop-types */
-      const { from = routes.ACCOUNT } = location.state;
-      history.push(from);
+      console.log(location);
+      const { from } = location.state;
+      history.push(from || routes.ACCOUNT);
       /* eslint-enable react/prop-types */
     } catch (error) {
-      setGlobalError(error);
+      setGlobalError(error.message);
     }
   };
 
